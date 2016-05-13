@@ -7,10 +7,15 @@ var Header = require('./common/header');
 var App = React.createClass({
 	render: function(){
 		return(
-			<div className="col-md-12">
+			<div>
 			    <Header/>
-                <div className="container-fluid">
+
+                <div className="container">
 				    <RouteHandler/>
+                </div>
+
+                <div className="container">
+                    <div className="row"></div>
                 </div>
 			</div>
 		);

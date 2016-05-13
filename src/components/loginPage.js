@@ -51,24 +51,18 @@ var Login = React.createClass({
     },
 	
 	render: function(){
-		var tableStyle = {width: '100%', backgroundColor: 'black'};
         if(!this.state.errors){
             this.state.errors = {};
         }
 		return (
-			<div>
-                <div className="col-md-4"></div>
-                <div className="col-md-4">
-
+			<div className="col-sm-12">
+                <div className="col-sm-4 col-sm-offset-4">
                     <LoginForm
                         credits={this.state.credits}
                         onChange={this.setFormState}
                         onLogin={this.doLogin}
                         errors={this.state.errors} />
-
                 </div>
-                <div className="col-md-4"></div>
-
 			</div>
 		);
 	}

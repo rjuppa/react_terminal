@@ -7,7 +7,7 @@ var Link = Router.Link;
 var Home = React.createClass({
 	render: function(){
 		return (
-			<div className="jumbotron center">
+			<div className="jumbotron text-center">
 				<h2>Welcome in Terminal</h2>
                 <img src="images/login-card.png" alt="login" />
                 <h3 className="login_header">

@@ -293,6 +293,7 @@ a.choicebutton:active {
 
 .button_wrapper{
     padding: 10px;
+    text-align: center;
 }
 
 .term_header{
@@ -473,3 +474,26 @@ h2.report{
     min-height:300px;
     text-align:left
 }
+
+.btn-huge {
+    padding: 16px 30px;
+    font-size: 24px;
+    line-height: 1.8;
+    border-radius: 6px;
+    margin: 5px;
+}
+
+.w100{
+    width: 100%;
+}
+
+.top-margin100{
+    margin-top: 100px;
+}
+
+#terminalHeader{
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+}
+

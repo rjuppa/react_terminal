@@ -25,9 +25,6 @@ var Header = React.createClass({
 
 	render: function(){
         var user = LoginStore.getUser();
-		var tableStyle = {width: '100%', backgroundColor: 'black'};
-		var colStyle = {width: '220px', padding: '5px'};
-
         var is_authenticated = false;
         if(user && user.hasOwnProperty("is_authenticated")){
             is_authenticated = user.is_authenticated;
@@ -36,20 +33,18 @@ var Header = React.createClass({
         if(is_authenticated){
             return (
                 <div>
-                    <table id="term_head" style={tableStyle}>
-                        <tr>
-                            <td style={colStyle}>
-                                <Link to="app" className="greenbutton">Home</Link>
-                            </td>
-                            <td colSpan="2" className="term_header">
-                                <div><span>TERMINAL</span> </div>
-                                <div><span>User: {this.state.username}</span> </div>
-                            </td>
-                            <td style={colStyle}>
-                                <a href="http://localhost:3000/logout" className="redbutton">Logout</a>
-                            </td>
-                        </tr>
-                    </table>
+                    <div className="col-sm-12" id="terminalHeader">
+                        <div className="col-sm-2 text-center">
+                            <Link to="app" className="btn btn-success btn-huge w100">Home</Link>
+                        </div>
+                        <div className="col-sm-8 text-center">
+                            <div><h4>TERMINAL</h4> </div>
+                            <div><h4>User: {this.state.username}</h4></div>
+                        </div>
+                        <div className="col-sm-2 text-center">
+                            <a href="http://localhost:3000/logout" className="btn btn-danger btn-huge w100" onclick="actionHandler('assign')">Logout</a>
+                        </div>
+                    </div>
                     <div><span>{this.state.error}</span></div>
                 </div>
             );
@@ -57,13 +52,16 @@ var Header = React.createClass({
         else{
             return (
                 <div>
-                    <table id="term_head" style={tableStyle}>
-                        <tr>
-                            <td colSpan="2" className="term_header">
-                                <span>TERMINAL</span>
-                            </td>
-                        </tr>
-                    </table>
+                    <div className="col-sm-12" id="terminalHeader">
+                        <div className="col-sm-2 text-center">
+                        </div>
+                        <div className="col-sm-8 text-center">
+                            <div><h4>TERMINAL</h4></div>
+                            <div><h4></h4></div>
+                        </div>
+                        <div className="col-sm-2 text-center">
+                        </div>
+                    </div>
                     <div><span>{this.state.error}</span></div>
                 </div>
             );

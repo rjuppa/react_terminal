@@ -1,12 +1,15 @@
 "use strict";
 
 var React = require("react");
+var Router = require("react-router");
+var Link = Router.Link;
+
 var StartWork = React.createClass({
 	render: function(){
 		return (
             <div className="col-sm-6 col-sm-offset-3">
                 <div className="text-center top-margin100">
-                    <a href="#" className="btn btn-success btn-huge" onclick="actionHandler('assign')">START WORK</a>
+                    <Link to="successPage" className="btn btn-success btn-huge">START WORK</Link>
                 </div>
             </div>
 		);

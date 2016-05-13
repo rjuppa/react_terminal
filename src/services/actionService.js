@@ -1,21 +1,27 @@
+"use strict";
+
 var Request = require('request');
 var Promise = require('bluebird');
 
 var appConst = require('../constants/appConstants');
+var userActions = require('../constants/userActions');
 var endPoints = require('../constants/endPoints');
 
+// data = {action_id: action_id, position_id: position_id, line_id: line_id};
 
-var AuthService = {
-    login: function(credits) {
+var ActionService = {
+
+
+    startWork: function() {
         return new Promise(function(resolve, reject){
             Request.post(
                 {
-                    url: endPoints.LOGIN_URL,
+                    url: endPoints.ACTION_URL,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
                         'User-Agent': appConst.USER_AGENT},
-                    form: {chipcard_num: credits.chipcard_num, mac_address: credits.mac_address}
+                    json: {action_id: userActions.START_WORK, position_id: 1, line_id: 1}
                 },
                 function(err, response, body){
                     if (err) {
@@ -31,4 +37,4 @@ var AuthService = {
     }
 };
 
-module.exports = AuthService;
+module.exports = ActionService;

@@ -1,6 +1,9 @@
 "use strict";
 
 var React = require("react");
+var Router = require("react-router");
+var Link = Router.Link;
+
 var EndWork = React.createClass({
 	render: function(){
 		return (

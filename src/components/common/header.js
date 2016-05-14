@@ -4,6 +4,8 @@ var React = require("react");
 var Router = require("react-router");
 var Link = Router.Link;
 var LoginStore = require("../../stores/loginStore");
+var LoginActions = require("../../actions/loginActions");
+var toastr = require('toastr');
 
 var Header = React.createClass({
     mixins: [
@@ -12,7 +14,7 @@ var Header = React.createClass({
     getInitialState: function(){
         return {
             username: LoginStore.getUserName(),
-            error: ''
+            error: null
         };
     },
 
@@ -20,7 +22,26 @@ var Header = React.createClass({
     componentWillMount: function(){ LoginStore.addChangeListener(this._onChange); },
     componentWillUnMount: function(){ LoginStore.removeChangeListener(this._onChange); },
     _onChange: function() {
-        this.setState({username: LoginStore.getUserName(), error: LoginStore.getErrorMessage()});
+        console.log('_onChange logout handle');
+        this.setState({
+            user: LoginStore.getUser(),
+            username: LoginStore.getUserName(),
+            error: LoginStore.getErrorMessage()}
+        );
+
+        // display error
+        if( this.state.error ){
+            toastr.error(this.state.error);
+        }
+
+        // logoff
+        if( !this.state.user ){
+            this.transitionTo('home');
+        }
+    },
+
+    doLogOut: function(){
+         LoginActions.logoutUser();
     },
 
 	render: function(){
@@ -42,7 +63,7 @@ var Header = React.createClass({
                             <div><h4>User: {this.state.username}</h4></div>
                         </div>
                         <div className="col-sm-2 text-center">
-                            <a href="http://localhost:3000/logout" className="btn btn-danger btn-huge w100" onclick="actionHandler('assign')">Logout</a>
+                            <button className="btn btn-danger btn-huge w100" onClick={this.doLogOut}>Logout</button>
                         </div>
                     </div>
                     <div><span>{this.state.error}</span></div>

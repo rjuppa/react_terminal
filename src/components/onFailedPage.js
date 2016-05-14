@@ -5,7 +5,7 @@ var Router = require("react-router");
 var LoginActions = require("../actions/loginActions");
 
 
-var Success = React.createClass({
+var Failed = React.createClass({
     getInitialState: function(){
         return {
             counter: 3
@@ -42,12 +42,12 @@ var Success = React.createClass({
                 <div className="text-center top-margin100">
 
           <div className="panel panel-logout">
-              <div className="panel-heading text-center">Operation successfull!</div>
+              <div className="panel-heading text-center">Warning</div>
               <div className="panel-body">
                 <p><h2>{this.props.query.message}</h2></p>
               </div>
               <div className="panel-heading text-center">
-                  You are going to be logoff in <span id="counter">{this.state.counter}</span> sec.
+                 You are going to be logoff in <span id="counter">{this.state.counter}</span> sec.
               </div>
           </div>
 
@@ -57,4 +57,4 @@ var Success = React.createClass({
 	}
 });
 
-module.exports = Success;
+module.exports = Failed;

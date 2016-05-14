@@ -15,6 +15,7 @@ var routes = (
         <Route name="startWork" handler={require('./components/startWorkPage')} />
         <Route name="endWork" handler={require('./components/endWorkPage')} />
         <Route name="successPage" handler={require('./components/onSuccessPage')} />
+        <Route name="failedPage" handler={require('./components/onFailedPage')} />
         <Route name="addAuthor" path="author" handler={require('./components/authors/manageAuthorPage')} />
         <Route name="manageAuthor" path="author/:id" handler={require('./components/authors/manageAuthorPage')} />
         <Route name="login" path="login" handler={require('./components/loginPage')} />

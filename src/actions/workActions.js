@@ -1,42 +1,38 @@
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
-var authService = require('../services/authService');
+var actionService = require('../services/actionService');
 var ActionTypes = require('../constants/actionTypes');
 
-var LoginActions = {
+var WorkActions = {
 
-    loginUser: function(credits){
-        var promise = authService.login(credits);
+    startWork: function(){
+        var promise = actionService.workAction(userActions.START_WORK);
         promise.then(
             //dispatches the action for the async-promise
             function (data) {       // returns json as string
                 Dispatcher.dispatch({
-                    actionType: ActionTypes.REQUEST_LOGIN_USER_SUCCESS,
+                    actionType: ActionTypes.REQUEST_START_WORK,
                     payload: data
                 });
             },
             function (reason) {     // returns json as string
                 var obj = JSON.parse(reason);
                 Dispatcher.dispatch({
-                    actionType: ActionTypes.REQUEST_LOGIN_USER_ERROR,
+                    actionType: ActionTypes.REQUEST_BACKEND_ERROR,
                     error: obj.error
                 });
             }
         );
-        Dispatcher.dispatch({
-            actionType: ActionTypes.REQUEST_LOGIN_USER,
-            credits: credits
-        });
     },
 
-    logoutUser: function(){
-        var promise = authService.logout();
+    endWork: function(){
+        var promise = actionService.workAction(userActions.END_WORK);
         promise.then(
             //dispatches the action for the async-promise
             function (data) {       // returns json as string
                 Dispatcher.dispatch({
-                    actionType: ActionTypes.REQUEST_LOGOUT_USER,
+                    actionType: ActionTypes.REQUEST_END_WORK,
                     payload: data
                 });
             },
@@ -51,4 +47,4 @@ var LoginActions = {
     }
 };
 
-module.exports = LoginActions;
+module.exports = WorkActions;

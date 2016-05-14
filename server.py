@@ -52,7 +52,7 @@
 
 import os
 import jinja2
-from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
+from flask import Flask, request, render_template, redirect, url_for, session, jsonify
 from flask.ext.login import (LoginManager, current_user, login_required,
                             login_user, logout_user, UserMixin, AnonymousUserMixin,
                             confirm_login, fresh_login_required)
@@ -107,6 +107,23 @@ login_manager.login_view = "index"
 login_manager.login_message = u"Please log in to access this page."
 login_manager.refresh_view = "reauth"
 
+
+class HTTP400(Exception):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv['message'] = self.message
+        return rv
+
+
 @login_manager.user_loader
 def load_user(id):
     return USERS.get(int(id))
@@ -141,7 +158,20 @@ def index():
 @login_required
 def logout():
     logout_user()
-    return render_template("index.html")
+    return jsonify(status='success', message='ok')
+
+
+@app.route('/actions', methods=['POST'])
+def actions():
+    id = session['user_id']
+    if request.method == "POST":
+        data = request.get_json()
+        try:
+            action_id = data["action_id"]
+            # TODO
+            return jsonify(status='success', message='ok')
+        except Exception as e:
+            raise HTTP400(e.message)
 
 
 if __name__ == "__main__":

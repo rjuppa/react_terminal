@@ -14,5 +14,15 @@
 	<div id="app"></div>
 
 	<script src="scripts/bundle.js"></script>
+<script type="text/javascript">
+var counter = 5;
+function countDown() {
+    $('#counter').text(counter);
+    counter--;
+    if(counter < 0){
+        window.location = "/bozp/terminal/logout";
+    }
+}
+</script>
 </body>
 </html>

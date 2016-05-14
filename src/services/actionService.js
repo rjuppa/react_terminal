@@ -3,7 +3,6 @@
 var Request = require('request');
 var Promise = require('bluebird');
 
-var appConst = require('../constants/appConstants');
 var userActions = require('../constants/userActions');
 var endPoints = require('../constants/endPoints');
 
@@ -11,17 +10,13 @@ var endPoints = require('../constants/endPoints');
 
 var ActionService = {
 
-
-    startWork: function() {
+    workAction: function(action_id) {
         return new Promise(function(resolve, reject){
             Request.post(
                 {
                     url: endPoints.ACTION_URL,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-                        'User-Agent': appConst.USER_AGENT},
-                    json: {action_id: userActions.START_WORK, position_id: 1, line_id: 1}
+                    headers: endPoints.HEADERS,
+                    json: {action_id: action_id, position_id: 1, line_id: 1}
                 },
                 function(err, response, body){
                     if (err) {

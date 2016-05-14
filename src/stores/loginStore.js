@@ -68,6 +68,12 @@ Dispatcher.register(function(action) {
             LoginStore.emitChange();
             break;
 
+        case ActionTypes.REQUEST_BACKEND_ERROR:
+            _user = null;
+            _error = action.error;
+            LoginStore.emitChange();
+            break;
+
         default:
             break;
     }

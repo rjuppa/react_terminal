@@ -3,6 +3,7 @@
 var Dispatcher = require('../dispatcher/appDispatcher');
 var actionService = require('../services/actionService');
 var ActionTypes = require('../constants/actionTypes');
+var userActions = require('../constants/userActions');
 
 var WorkActions = {
 

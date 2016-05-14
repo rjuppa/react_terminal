@@ -40,7 +40,7 @@ var StartWork = React.createClass({
 	render: function(){
 		return (
             <div className="col-sm-6 col-sm-offset-3">
-                <div className="text-center top-margin100">21
+                <div className="text-center top-margin100">
                     <button className="btn btn-success btn-huge" onClick={this.doStartWork}>START WORK</button>
                 </div>
             </div>
